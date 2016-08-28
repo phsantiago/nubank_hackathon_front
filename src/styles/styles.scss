@@ -18,4 +18,21 @@
   *:after {
     box-sizing: inherit;
   }
+
+  .modal {
+    overflow-x: hidden;
+    .modal-content {
+      padding: 24px;
+      padding-top: 90px;
+      h4{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: -2px;
+        padding: 24px;
+        color: #fff;
+        background-color: #c51162;
+      }
+    }
+  }
 }
