@@ -34,7 +34,13 @@ class UserHeader extends React.Component {
             <h5>{NomeUsuario}</h5>
           </Col>
           <Col s={4} className="tac white-text">
-            <h3>Saldo: { SaldoUsuario }</h3>
+            <div className="sep-saldo">
+              <h3>Saldo: </h3>
+            </div>
+            <div className="sep-saldo">
+              <h3>{ SaldoUsuario }</h3>
+              <div className="efeitoSaldo sub">123.12</div>
+            </div>
           </Col>
           <Col s={4} className="tar white-text">
             Desconto Acumulado: { DescontoAcumuladoUsuario }

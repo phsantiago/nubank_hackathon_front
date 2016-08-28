@@ -63,4 +63,30 @@
   .tar{
     text-align: right;
   }
+  .sep-saldo{
+    position: relative;
+    display: inline-block;
+    h3{
+      display: inline;
+    }
+    
+  }
+  .efeitoSaldo{
+    font-size: 43px;
+    position: absolute;
+    right: 0;
+    top: -8px;
+  }
+}
+@-webkit-keyframes sub-anim {
+  0%   { opacity: 0; 
+        top: -8px;}
+  100% { opacity: 1; 
+        top: 20px;}
+}
+.sub{
+  -webkit-animation: sub-anim 5s infinite; /* Safari 4+ */
+  -moz-animation:    sub-anim 5s infinite; /* Fx 5+ */
+  -o-animation:      sub-anim 5s infinite; /* Opera 12+ */
+  animation:         sub-anim 5s infinite; /* IE 10+, Fx 29+ */
 }
