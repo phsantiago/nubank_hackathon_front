@@ -96,7 +96,7 @@ class Vender extends React.Component {
     return (
     	<Row>
 	        <Col s={9}>
-	        	<Card title="Quais acoes que eu posso vender?">
+	        	<Card title="Quais ações que eu posso vender?">
           			<SellOptionsList
                   {...this.props}
                   options={availableOptions} />

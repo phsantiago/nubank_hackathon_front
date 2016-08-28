@@ -10,6 +10,7 @@ const LineGraph = ({ UrlGrafico }) => (
 )
 
 const Details = ({ ValorDeAbertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMeses }) => (
+ 
   <Card>
     <Table stripped={true} striped={true} bordered={true} hoverable={true}>
       <tbody>
@@ -18,19 +19,19 @@ const Details = ({ ValorDeAbertura, MaiorValorDia, MenorValorDia, MaiorMeses, Me
           <td>{ ValorDeAbertura }</td>
         </tr>
         <tr>
-          <td>Maior preco do dia</td>
+          <td>Maior preço do dia</td>
           <td>{ MaiorValorDia }</td>
         </tr>
         <tr>
-          <td>Menor preco do dia</td>
+          <td>Menor preço do dia</td>
           <td>{ MenorValorDia }</td>
         </tr>
         <tr>
-          <td>Maior preco em 12 meses</td>
+          <td>Maior preço em 12 meses</td>
           <td>{ MaiorMeses }</td>
         </tr>
         <tr>
-          <td>Menor preco em 12 meses</td>
+          <td>Menor preço em 12 meses</td>
           <td>{ MenorMeses }</td>
         </tr>
       </tbody>
