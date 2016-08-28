@@ -29,6 +29,7 @@ const SellOptionsListItem = (props) => {
     let { UrlLogoEmpresa: img,
           NomeEmpresa: name,
           QuantidadeEmEstoque: qt,
+          QuantidadeASerVendida,
           PrecoAtualAcao: val,
           incrementQty,
           decrementQty } = props
@@ -41,18 +42,21 @@ const SellOptionsListItem = (props) => {
 			{name}
 		</td>
 		<td className="col s2">
+			{qt}
+    </td>
+		<td className="col s2">
 			<button className="btn-purple"
         onClick={() => decrementQty(props) }>
 				-
 			</button>
-			{qt}
+			{QuantidadeASerVendida}
 			<button className="btn-purple"
         onClick={() => incrementQty(props) }>
 				+
 			</button>
 		</td>
 		<td className="col s1">
-			{val}
+			R$ {val}
 		</td>
 		<td className="col s2">
 			<Button className="pink accent-4" waves='light'>
@@ -71,8 +75,9 @@ const SellOptionsList = ({ options, incrementQty, decrementQty }) => (
         <tr className="row">
           <td className="col s1"> </td>
           <td className="col s5">Nome</td>
-          <td className="col s2">Qtd</td>
-          <td className="col s1">Valor</td>
+          <td className="col s2">Total disponivel</td>
+          <td className="col s2">Qtd a vender</td>
+          <td className="col s1">Valor Unit.</td>
           <td className="col s2">Ação</td>
           <td className="col s1">Infos</td>
         </tr>
