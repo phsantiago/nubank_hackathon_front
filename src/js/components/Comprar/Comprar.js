@@ -1,29 +1,60 @@
 import React from 'react'
-import { Row, Col, Table, Card } from 'react-materialize'
-
+import { Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
 
 class LineGraph extends React.Component {
   render() {
-    const { color, dataX } = this.props
-
     return (
       <Card title="Como o preco variou?">
-        <h1>Grafico</h1>
       </Card>
     )
   }
 }
 
-const NewsBox = ({ newsData, corpName }) => (
-    <Card title={ "Noticias sobre " + corpName }>
+const NewsListItem = ({ img_url, title, content, source_url }) => (
+    <Card
+      header={<CardTitle image={img_url}>{title}</CardTitle>}
+      className="small">
+      { content }
     </Card>
 )
 
-const BuyActionsItem = ({ corp, value, onClick, ...props }) => (
-    <tr onClick={onClick.bind(this, corp)} {...props}>
-      <td>{ corp }</td>
-      <td>{ value }</td>
-    </tr>
+const BuyActionsItem = (props) => {
+    const { NomeEmpresa, onClick } = props
+    return (
+      <tr onClick={onClick.bind(this, props)} {...props}>
+        <td>{ NomeEmpresa }</td>
+        <td></td>
+      </tr>
+    )
+}
+
+const Details = ({ Abertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMeses, ValorDeAbertura }) => (
+  <Card>
+    <Table>
+      <tbody>
+        <tr>
+          <td>Abertura</td>
+          <td>{ Abertura }</td>
+        </tr>
+        <tr>
+          <td>Maior preco do dia</td>
+          <td>{ MaiorValorDia }</td>
+        </tr>
+        <tr>
+          <td>Menor preco do dia</td>
+          <td>{ MenorValorDia }</td>
+        </tr>
+        <tr>
+          <td>Maior preco em 12 meses</td>
+          <td>{ MaiorMeses }</td>
+        </tr>
+        <tr>
+          <td>Menor preco em 12 meses</td>
+          <td>{ MenorMeses }</td>
+        </tr>
+      </tbody>
+    </Table>
+  </Card>
 )
 
 const BuyActions = ({ onItemClick, stockOptions }) => (
@@ -45,40 +76,33 @@ const BuyActions = ({ onItemClick, stockOptions }) => (
 
 class Comprar extends React.Component {
   render() {
-    //const { fetchOptionsData } = this.props
-    var fetchOptionsData = null
-    if(!fetchOptionsData)
-      fetchOptionsData = function(x){ console.log("CLICKED", x) }
+    const { selectStockOption, visibleStockOptions, selectedOption } = this.props
     var array = [1,2,3,4];
-    var defaultOptions = [
-      { corp: "MacDonald", value: 11.25 },
-      { corp: "Volskwagem", value: 11.25 },
-      { corp: "Fiat", value: 11.25 },
-      { corp: "Vale do Rio Doce", value: 11.25 }
-    ]
+    console.log("PROPS", this.props)
 
     return (
         <Row>
 
           <Col s={3}>
             <BuyActions
-              onItemClick={fetchOptionsData}
-              stockOptions={defaultOptions} />
+              onItemClick={selectStockOption}
+              stockOptions={visibleStockOptions} />
           </Col>
 
           <Col s={3}>
             <Row>
               <Col s={12}>
-                <LineGraph color="AMARELO" dataX={array} />
+                <LineGraph {...this.props} />
               </Col>
               <Col s={12}>
-                <LineGraph color="AMARELO" dataX={array} />
+                <Details {...selectedOption.details} />
               </Col>
             </Row>
           </Col>
 
           <Col s={3}>
-            <NewsBox corpName="MacDonal" />
+            <h1>Noticias</h1>
+            { this.props.newsData.map(NewsListItem) }
           </Col>
 
         </Row>
