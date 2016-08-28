@@ -28,7 +28,7 @@ const Chart = ({ name, data }) => {
       data={lineData}
       width='100%'
       height={400}
-      viewBoxObject={{ x: 0, y: 0, width: 500, height: 400 }}
+      viewBoxObject={{ x: 0, y: 0, width: 600, height: 800 }}
       title="Como o preço variou?"
       yAxisLabel="Cotação (R$)"
       xAxisLabel="Periodo (Hora)"
