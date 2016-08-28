@@ -1,35 +1,78 @@
 import React from 'react'
 import Styles from './Vender.scss'
-import { Row, Col, Button, Card, Collection, CollectionItem, Modal } from 'react-materialize'
+import { Row, Col, Button, Card, Table, Td, Modal } from 'react-materialize'
 
 const ListItem = ({img, name, qt, val}) => (
-	<CollectionItem>
-		<Row className="valign-wrapper">
-			<Col s={1}>
-				<img src={img} className="circle responsive-img" />
-			</Col>
-			<Col s={7}>
-				{name}
-			</Col>
-			<Col s={2}>
-				{qt}{val}
-			</Col>
-			<Col s={2}>
-				<Button className="pink accent-4" waves='light'>
-					Vender tes
-				</Button>
-			</Col>
-		</Row>
-	</CollectionItem>
+
+	<tr className="valign-wrapper row">
+		<td className="col s1">
+			<img src={img} className="circle responsive-img" />
+		</td>
+		<td className="col s5">
+			{name}
+		</td>
+		<td className="col s2">
+			<button className="btn-purple">
+				-
+			</button>
+			{qt}
+			<button className="btn-purple">
+				+
+			</button>
+		</td>
+		<td className="col s1">
+			{val}
+		</td>
+		<td className="col s2">
+			<Button className="pink accent-4" waves='light'>
+				Vender
+			</Button>
+		</td>
+		<td className="col s1">
+			<ModalHistory modalData={name} history={[{name:"name",val:"1.1"},{name:"name",val:"1.1"}]}/>
+		</td>
+	</tr>
 )
+
+const ListAction = ({name, val}) => (
+	<p>{name}</p>
+)
+class ModalHistory extends React.Component {
+	render() {
+		const {modalData, history} = this.props
+		return (
+			<Modal
+			  header={modalData + " - Histórico de investimento"}
+			  trigger={
+			    <Button waves='light'>
+			    	<i className="large material-icons">info_outline</i>
+			    </Button>
+			  }>
+			  <div>
+			  	{history.map(ListAction)}
+			  </div>
+			</Modal>
+		)
+	}
+}
 class ActionList extends React.Component {
   render() {
     const {history} = this.props
 
     return (
-      <Collection>
+      <Table className="tbl-vender">
+      	<thead>
+      		<tr className="row">
+      			<td className="col s1"> </td>
+      			<td className="col s5">Nome</td>
+      			<td className="col s2">Qtd</td>
+      			<td className="col s1">Valor</td>
+      			<td className="col s2">Ação</td>
+      			<td className="col s1">Infos</td>
+      		</tr>
+      	</thead>
       	{history.map(ListItem)}
-      </Collection>
+      </Table>
     )
   }
 }
@@ -44,14 +87,7 @@ class Vender extends React.Component {
     	<Row>
 	        <Col s={9}>
 	        	<Card>
-		        	<Modal
-		        	  header='Modal Header'
-		        	  trigger={
-		        	    <Button waves='light'>MODAL</Button>
-		        	  }>
-		        	  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-		        	</Modal>
-	          			<ActionList history={array} />
+          			<ActionList history={array} />
 	        	</Card>
 	        </Col>
     	</Row>
