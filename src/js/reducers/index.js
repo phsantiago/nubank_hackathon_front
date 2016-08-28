@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import friendList from './friendList';
+import comprar from '../modules/comprar';
 
 const rootReducer = combineReducers({
-  friendList
+  comprar
 });
 
 export default rootReducer;

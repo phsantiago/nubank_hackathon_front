@@ -1,19 +1,20 @@
-import './Comprar.scss'
+import './Comprar.scss';
+import { bindActionCreators } from 'redux'
 
 import { connect } from 'react-redux'
 import Comprar from '../../components/Comprar/Comprar'
+import { createSelector} from 'reselect'
 
-function mapStateToProps(state) {
-  return {
-  };
+import { selectStockOption } from '../../modules/comprar'
+
+const mapStateToProps = createSelector(
+  (state) => state.comprar,
+  (comprar) => comprar.toJS()
+)
+
+const mapActionCreators = {
+  selectStockOption
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Comprar);
+console.log("ACTION EH", selectStockOption, mapActionCreators)
+export default connect(mapStateToProps, mapActionCreators)(Comprar)
