@@ -185,19 +185,19 @@ class Comprar extends React.Component {
           </Col>
 
           <Col s={4}>
-            <Row>
-              <Col s={12}>
-                <LineGraph {...selectedOption} />
-              </Col>
-              <Col s={12}>
-                <Details {...selectedOption} />
-              </Col>
-            </Row>
-          </Col>
+              <Row>
+                <Col s={12}>
+                  <LineGraph {...selectedOption} />
+                </Col>
+                <Col s={12}>
+                  <Details {...selectedOption} />
+                </Col>
+              </Row>
+            </Col>
 
-          <Col s={4}>
-            <News />
-          </Col>
+            <Col s={4}>
+              <News />
+            </Col>
 
         </Row>
     )
