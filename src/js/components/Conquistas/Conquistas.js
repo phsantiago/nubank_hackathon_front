@@ -2,19 +2,37 @@ import React from 'react'
 import { Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
 import Style from './Conquistas.scss'
 
-const conquista = ({TituloConquista, DescricaoConquista, Completada, ValorDesconto})=>(
-	<Col s={3}>
-		<Card className="tac archiev">
-			<h5 className="light-green-text">
-				<b>R$ {ValorDesconto}</b>
-			</h5>
-			<h4>{TituloConquista}</h4>
-				<img className={!Completada ? 'disabled medal' : 'medal'} src="http://i.imgur.com/BnNo0Tk.png" />
-			
-			<p>{DescricaoConquista}</p>
-		</Card>
-	</Col>
-)
+const conquista = ({useDiv, TituloConquista, DescricaoConquista, Completada, ValorDesconto, colSize, ContainerClass}) => {
+    if(!ContainerClass)
+      ContainerClass = Card
+    if(useDiv){
+      return (<Col s={colSize}>
+        <div className="tac archiev">
+          <h5 className="light-green-text">
+            <b>R$ {ValorDesconto}</b>
+          </h5>
+          <h4>{TituloConquista}</h4>
+            <img className={!Completada ? 'disabled medal' : 'medal'} src="http://i.imgur.com/BnNo0Tk.png" />
+
+          <p>{DescricaoConquista}</p>
+        </div>
+      </Col>)
+    } else {
+
+      return (<Col s={colSize}>
+        <ContainerClass className="tac archiev">
+          <h5 className="light-green-text">
+            <b>R$ {ValorDesconto}</b>
+          </h5>
+          <h4>{TituloConquista}</h4>
+            <img className={!Completada ? 'disabled medal' : 'medal'} src="http://i.imgur.com/BnNo0Tk.png" />
+
+          <p>{DescricaoConquista}</p>
+        </ContainerClass>
+      </Col>)
+    }
+}
+
 class Conquistas extends React.Component {
 
 	render() {
@@ -56,11 +74,14 @@ class Conquistas extends React.Component {
 		     "ValorDesconto": 5
 		   }
 		]
+    let { hideTitle, colSize, useDiv} = this.props
+    if(!colSize)
+      colSize = 3
 		return (
 			<div>
-				<h3>Suas Conquistas</h3>
+        { hideTitle? null : <h3>Suas Conquistas</h3> }
 				<Row>
-					{ lista.map(conquista) }
+					{ lista.map((o) => ({ ...o, colSize: colSize, useDiv})).map(conquista) }
 				</Row>
 			</div>
 		)

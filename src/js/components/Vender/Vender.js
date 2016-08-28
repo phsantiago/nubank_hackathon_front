@@ -1,6 +1,7 @@
 import React from 'react'
 import Styles from './Vender.scss'
 import { Row, Col, Button, Card, Table, Td, Modal } from 'react-materialize'
+import Conquistas from '../Conquistas/Conquistas'
 
 const ListAction = ({name, val}) => (
 	<p>{name}</p>
@@ -95,11 +96,16 @@ class Vender extends React.Component {
     let { availableOptions } = this.props
     return (
     	<Row>
-	        <Col s={9}>
+	        <Col s={8}>
 	        	<Card title="Quais ações que eu posso vender?">
           			<SellOptionsList
                   {...this.props}
                   options={availableOptions} />
+	        	</Card>
+	        </Col>
+	        <Col s={4}>
+	        	<Card title="Os descontos que eu vou ganhar!">
+              <Conquistas useDiv={true} hideTitle={true} colSize={12} />
 	        	</Card>
 	        </Col>
     	</Row>
