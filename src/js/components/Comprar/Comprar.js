@@ -99,7 +99,7 @@ class ShowBuyModal extends React.Component {
 
     return (
         <Modal
-          header={"Quero comprar acoes da " + NomeEmpresa +"!"}
+          header={"Quero comprar ações da " + NomeEmpresa +"!"}
           actions={[ <Button onClick={_onClick} modal='close'>Comprar!</Button> ]}
           trigger={
             <Button className="pink accent-4" waves='light'>
@@ -107,11 +107,11 @@ class ShowBuyModal extends React.Component {
             </Button>
           }>
           <div>
-            <p>Seu saldo disponivel eh R$ { balance }</p>
+            <p>Seu saldo disponivel é R$ { balance }</p>
             <p>
-            No momento, uma acao de <strong>{ NomeEmpresa}</strong> custa R$ <strong>{ CotacaoRecente }</strong>.</p>
+            No momento, uma ação de <strong>{ NomeEmpresa}</strong> custa R$ <strong>{ CotacaoRecente }</strong>.</p>
 
-            <p>Eu gostaria de comprar <UnitChooser limit={balance} onChange={_onChange} inline={true} /> acoes num total de <strong>R$ {totalCost} </strong>.</p>
+            <p>Eu gostaria de comprar <UnitChooser limit={balance} onChange={_onChange} inline={true} /> ações num total de <strong>R$ {totalCost} </strong>.</p>
 
           </div>
         </Modal>
