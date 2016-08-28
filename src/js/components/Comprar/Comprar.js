@@ -75,6 +75,11 @@ const BuyActions = ({ onItemClick, stockOptions }) => (
 )
 
 class Comprar extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchEmpresas()
+  }
+
   render() {
     const { selectStockOption, visibleStockOptions, selectedOption } = this.props
     var array = [1,2,3,4];
