@@ -8,13 +8,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <Row>
+      <div>
         <Navbar>
           <NavItem href="comprar">Comprar</NavItem>
           <NavItem href="vender">Vender</NavItem>
         </Navbar>
         {this.props.children}
-      </Row>
+      </div>
     );
   }
 }
