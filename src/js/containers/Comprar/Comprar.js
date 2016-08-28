@@ -5,16 +5,24 @@ import { connect } from 'react-redux'
 import Comprar from '../../components/Comprar/Comprar'
 import { createSelector} from 'reselect'
 
-import { selectStockOption, fetchEmpresas } from '../../modules/comprar'
+import { selectStockOption, fetchNoticias, fetchEmpresas } from '../../modules/comprar'
 
 const mapStateToProps = createSelector(
-  (state) => state.comprar,
-  (comprar) => comprar.toJS()
+  [
+  (state) => state.comprar.get("selectedOption"),
+  (state) => state.comprar.get("visibleStockOptions")],
+  (opt, list) => {
+    return {
+      selectedOption: opt,
+      visibleStockOptions: list
+    }
+  }
 )
 
 const mapActionCreators = {
   selectStockOption,
-  fetchEmpresas
+  fetchEmpresas,
+  fetchNoticias
 }
 
 console.log("ACTION EH", selectStockOption, mapActionCreators)

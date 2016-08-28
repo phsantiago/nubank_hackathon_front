@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
+import News from '../../containers/News'
 
 class LineGraph extends React.Component {
   render() {
@@ -10,31 +11,13 @@ class LineGraph extends React.Component {
   }
 }
 
-const NewsListItem = ({ img_url, title, content, source_url }) => (
-    <Card
-      header={<CardTitle image={img_url}>{title}</CardTitle>}
-      className="small">
-      { content }
-    </Card>
-)
-
-const BuyActionsItem = (props) => {
-    const { NomeEmpresa, onClick } = props
-    return (
-      <tr onClick={onClick.bind(this, props)} {...props}>
-        <td>{ NomeEmpresa }</td>
-        <td></td>
-      </tr>
-    )
-}
-
-const Details = ({ Abertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMeses, ValorDeAbertura }) => (
+const Details = ({ ValorDeAbertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMeses }) => (
   <Card>
-    <Table>
+    <Table stripped={true} striped={true} bordered={true} hoverable={true}>
       <tbody>
         <tr>
           <td>Abertura</td>
-          <td>{ Abertura }</td>
+          <td>{ ValorDeAbertura }</td>
         </tr>
         <tr>
           <td>Maior preco do dia</td>
@@ -57,18 +40,32 @@ const Details = ({ Abertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMese
   </Card>
 )
 
+const BuyActionsItem = (props) => {
+    const { NomeEmpresa, UrlLogo, CotacaoRecente, Variacao, onItemClick } = props
+    return (
+      <tr onClick={() => { onItemClick(props) }} {...props}>
+        <td><img src={UrlLogo} className="circle responsive-img" /></td>
+        <td>{ NomeEmpresa }</td>
+        <td>{ CotacaoRecente }</td>
+        <td>{ Variacao }</td>
+      </tr>
+    )
+}
+
 const BuyActions = ({ onItemClick, stockOptions }) => (
     <Card title="Quais acoes eu posso comprar?">
       <Table bordered={true}>
         <thead>
           <tr>
+            <th></th>
             <th>Empresa</th>
-            <th>Cotcao</th>
+            <th>Cotacao</th>
+            <th>VariacaoRecente</th>
           </tr>
         </thead>
 
         <tbody>
-          { stockOptions.map((o) => ({ ...o, onClick: onItemClick })).map(BuyActionsItem) }
+          { stockOptions.map((o) => ({ ...o, onItemClick })).map(BuyActionsItem) }
         </tbody>
       </Table>
     </Card>
@@ -81,8 +78,12 @@ class Comprar extends React.Component {
   }
 
   render() {
-    const { selectStockOption, visibleStockOptions, selectedOption } = this.props
-    var array = [1,2,3,4];
+    let { selectStockOption, fetchNoticias, visibleStockOptions, selectedOption } = this.props
+
+    if(visibleStockOptions.length > 0 && !selectedOption) {
+      selectStockOption(visibleStockOptions[0])
+    }
+
     console.log("PROPS", this.props)
 
     return (
@@ -100,14 +101,13 @@ class Comprar extends React.Component {
                 <LineGraph {...this.props} />
               </Col>
               <Col s={12}>
-                <Details {...selectedOption.details} />
+                <Details {...selectedOption} />
               </Col>
             </Row>
           </Col>
 
-          <Col s={3}>
-            <h1>Noticias</h1>
-            { this.props.newsData.map(NewsListItem) }
+          <Col s={2}>
+            <News />
           </Col>
 
         </Row>
