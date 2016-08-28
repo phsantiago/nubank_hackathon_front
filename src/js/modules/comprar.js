@@ -10,8 +10,23 @@ export const FETCH_NOTICIAS_RESULT = "FETCH_NOTICIAS_RESULT"
 export const SELECT_STOCK_OPTION = "SELECT_STOCK_OPTION"
 export const BUY_STOCK_OPTION_REQUEST = "BUY_STOCK_OPTION_REQUEST"
 export const BUY_STOCK_OPTION_RESULT = "BUY_STOCK_OPTION_RESULT"
+export const FETCH_COTACAO_REQUEST = "FETCH_COTACAO_REQUEST"
+export const FETCH_COTACAO_RESULT = "FETCH_COTACAO_RESULT"
 
-export const buyStockOptions =(option, quantidade) => {
+// historico da cotacao
+export const fetchCotacao = (IdEmpresa) => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_COTACAO_REQUEST, payload: { IdEmpresa } })
+    $.getJSON(BASE_URL + '/Empresa/Grafico?idEmpresa=' + IdEmpresa)
+      .done((response) => {
+        console.log("GOT RESPONSE", response)
+        if(response && response.length > 0)
+          dispatch({ type: FETCH_COTACAO_RESULT, payload: response[0].Coordenadas })
+      })
+  }
+}
+
+export const buyStockOptions = (option, quantidade) => {
   return (dispatch) => {
     dispatch({ type: BUY_STOCK_OPTION_REQUEST, payload: { option, quantidade } })
     let idAcao = option.IdEmpresa
@@ -58,20 +73,33 @@ export const selectStockOption = (option) => {
       type: SELECT_STOCK_OPTION,
       payload: option
     })
-    dispatch(fetchNoticias(option.IdEmpresa))
+    dispatch(fetchCotacao(option.IdEmpresa))
+    //dispatch(fetchNoticias(option.IdEmpresa))
   }
 }
 
 const DEFAULT_STATE = Immutable.fromJS({
   selectedOption: null,
   visibleStockOptions: [],
-  newsData: []
+  newsData: [],
+  chart: Immutable.fromJS({
+    name: "",
+    data: Immutable.fromJS([])
+  })
 })
 
 const comprarReducer = (state = DEFAULT_STATE, action) => {
   if(state)
     console.log("STATE", state.toJS())
   switch(action.type) {
+    case FETCH_COTACAO_REQUEST:
+      return state
+    case FETCH_COTACAO_RESULT:
+      let chart = Immutable.fromJS({
+        name: state.get('selectedOption').NomeEmpresa,
+        data: Immutable.fromJS(action.payload)
+      })
+      return state.set("chart", chart)
     case FETCH_NOTICIAS:
       return state
     case FETCH_NOTICIAS_RESULT:
