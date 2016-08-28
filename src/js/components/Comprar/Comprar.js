@@ -149,8 +149,8 @@ const BuyActions = ({ onItemClick, buyStock, stockOptions }) => (
           <tr>
             <th></th>
             <th>Empresa</th>
-            <th>Cotacao</th>
-            <th>VariacaoRecente</th>
+            <th>Cotação</th>
+            <th>Variação</th>
             <th></th>
           </tr>
         </thead>
