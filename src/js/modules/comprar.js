@@ -7,7 +7,26 @@ export const FETCH_EMPRESAS_RESULT = "FETCH_EMPRESAS_RESULT"
 export const FETCH_NOTICIAS = "FETCH_NOTICIAS"
 export const FETCH_NOTICIAS_RESULT = "FETCH_NOTICIAS_RESULT"
 export const SELECT_STOCK_OPTION = "SELECT_STOCK_OPTION"
+export const BUY_STOCK_OPTION_REQUEST = "BUY_STOCK_OPTION_REQUEST"
+export const BUY_STOCK_OPTION_RESULT = "BUY_STOCK_OPTION_RESULT"
 
+export const buyStockOptions =(option, quantidade) => {
+  return (dispatch) => {
+    dispatch({ type: BUY_STOCK_OPTION_REQUEST, payload: { option, quantidade } })
+    let idAcao = option.IdEmpresa
+    let data = { idUsuario: 1, quantidade, idAcao }
+    $.ajax({
+      type: "POST",
+      url: BASE_URL + "/Acoes/Comprar",
+      data,
+      dataType: "json",
+      contentType: "application/json" })
+      .done(response => {
+        console.log("GOT RESPONSE", response)
+        dispatch({ type: BUY_STOCK_OPTION_RESULT, payload: response.ReturnObject })
+    })
+  }
+}
 export const fetchNoticias = function(idEmpresa) {
   return (dispatch) => {
     dispatch({ type: FETCH_NOTICIAS, payload: idEmpresa })

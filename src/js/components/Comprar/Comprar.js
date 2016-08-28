@@ -91,13 +91,16 @@ class ShowBuyModal extends React.Component {
     let props = this.props
     let { option, onBuyClick, balance } = props
     let { NomeEmpresa, CotacaoRecente } = option
+    let { buyCount } = this.state
 
     let totalCost = this.state.buyCount * option.CotacaoRecente,
-        _onChange = (v) => { this.setState({ buyCount: v }) }
+        _onChange = (v) => { this.setState({ buyCount: v }) },
+        _onClick = () => { console.log("BUY", buyCount, option); onBuyClick(option, buyCount) }
+
     return (
         <Modal
           header={"Quero comprar acoes da " + NomeEmpresa +"!"}
-          actions={[ <Button>Comprar!</Button> ]}
+          actions={[ <Button onClick={_onClick} modal='close'>Comprar!</Button> ]}
           trigger={
             <Button className="pink accent-4" waves='light'>
               Comprar
@@ -166,7 +169,11 @@ class Comprar extends React.Component {
   }
 
   render() {
-    let { selectStockOption, fetchNoticias, visibleStockOptions, selectedOption } = this.props
+    let { selectStockOption,
+          buyStockOptions,
+          fetchNoticias,
+          visibleStockOptions,
+          selectedOption } = this.props
 
     if(visibleStockOptions.length > 0 && !selectedOption) {
       selectStockOption(visibleStockOptions[0])
@@ -179,7 +186,7 @@ class Comprar extends React.Component {
 
           <Col s={4}>
             <BuyActions
-              buyStock={(x) => { console.log("BUY", x) }}
+              buyStock={buyStockOptions}
               onItemClick={selectStockOption}
               stockOptions={visibleStockOptions} />
           </Col>
