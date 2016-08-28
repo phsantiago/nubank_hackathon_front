@@ -37,7 +37,7 @@ export default class App extends Component {
               <NavItem
                 onClick={ _toggleNotification }
                 className="notification-ic">
-                <i className="small material-icons">add_alert</i>
+                <i className="small material-icons">notifications</i>
               </NavItem>
 
               { isNotificationVisible?
