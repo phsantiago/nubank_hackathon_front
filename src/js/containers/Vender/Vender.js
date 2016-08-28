@@ -3,7 +3,7 @@ import './Vender.scss';
 import { connect } from 'react-redux'
 import Vender from '../../components/Vender/Vender'
 import { createSelector} from 'reselect'
-import { fetchAcoes } from '../../modules/vender'
+import { fetchAcoes, setOptionQty } from '../../modules/vender'
 
 const mapStateToProps = createSelector(
   [(state) => {
@@ -15,7 +15,14 @@ const mapStateToProps = createSelector(
 )
 
 const mapActionCreators = {
-  fetchAcoes
+  fetchAcoes,
+  incrementQty: function(option) {
+    console.log("INC", option)
+    return setOptionQty(option.EmpresaId, option.QuantidadeEmEstoque + 1)
+  },
+  decrementQty: function(option) {
+    return setOptionQty(option.EmpresaId, option.QuantidadeEmEstoque - 1)
+  }
 }
 
 export default connect(mapStateToProps, mapActionCreators)(Vender)

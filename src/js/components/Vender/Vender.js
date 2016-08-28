@@ -25,9 +25,15 @@ class ModalHistory extends React.Component {
 	}
 }
 
-const SellOptionsListItem = ({UrlLogoEmpresa: img, NomeEmpresa: name, QuantidadeEmEstoque: qt, PrecoAtualAcao: val}) => (
+const SellOptionsListItem = (props) => {
+    let { UrlLogoEmpresa: img,
+          NomeEmpresa: name,
+          QuantidadeEmEstoque: qt,
+          PrecoAtualAcao: val,
+          incrementQty,
+          decrementQty } = props
 
-	<tr className="valign-wrapper row">
+	return (<tr className="valign-wrapper row">
 		<td className="col s1">
 			<img src={img} className="circle responsive-img" />
 		</td>
@@ -35,11 +41,13 @@ const SellOptionsListItem = ({UrlLogoEmpresa: img, NomeEmpresa: name, Quantidade
 			{name}
 		</td>
 		<td className="col s2">
-			<button className="btn-purple">
+			<button className="btn-purple"
+        onClick={() => decrementQty(props) }>
 				-
 			</button>
 			{qt}
-			<button className="btn-purple">
+			<button className="btn-purple"
+        onClick={() => incrementQty(props) }>
 				+
 			</button>
 		</td>
@@ -54,10 +62,10 @@ const SellOptionsListItem = ({UrlLogoEmpresa: img, NomeEmpresa: name, Quantidade
 		<td className="col s1">
 			<ModalHistory modalData={name} history={[{name:"name",val:"1.1"},{name:"name",val:"1.1"}]}/>
 		</td>
-	</tr>
-)
+	</tr>)
+}
 
-const SellOptionsList = ({ options }) => (
+const SellOptionsList = ({ options, incrementQty, decrementQty }) => (
     <Table className="tbl-vender">
       <thead>
         <tr className="row">
@@ -69,7 +77,7 @@ const SellOptionsList = ({ options }) => (
           <td className="col s1">Infos</td>
         </tr>
       </thead>
-      { options.map(SellOptionsListItem) }
+      { options.map((o) => ({ ...o, incrementQty, decrementQty })).map(SellOptionsListItem) }
     </Table>
 )
 
@@ -84,7 +92,9 @@ class Vender extends React.Component {
     	<Row>
 	        <Col s={9}>
 	        	<Card title="Quais acoes que eu posso vender?">
-          			<SellOptionsList options={availableOptions} />
+          			<SellOptionsList
+                  {...this.props}
+                  options={availableOptions} />
 	        	</Card>
 	        </Col>
     	</Row>
