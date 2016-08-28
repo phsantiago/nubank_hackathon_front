@@ -18,7 +18,7 @@ export const buyStockOptions =(option, quantidade) => {
     $.ajax({
       type: "POST",
       url: BASE_URL + "/Acoes/Comprar",
-      data,
+      data: JSON.stringify(data),
       dataType: "json",
       contentType: "application/json" })
       .done(response => {
