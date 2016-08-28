@@ -19,10 +19,10 @@ const Chart = ({ name, data }) => {
     return null
 
   let lineData = [
-    { name, values: data }
+    { name: "", values: data }
   ]
 
-  return (<Card>
+  return (<Card style={{ paddingBottom: "1.5em" }}>
     <LineChart
       legend={true}
       data={lineData}

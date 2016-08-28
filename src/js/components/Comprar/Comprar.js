@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
+import { CardPanel, Modal, Button, Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
 import News from '../../containers/News'
 import Chart from '../../containers/Chart'
 import Style from './Comprar.scss'
@@ -176,6 +176,8 @@ class Comprar extends React.Component {
       selectStockOption(visibleStockOptions[0])
     }
 
+    let { NomeEmpresa, UrlLogo } = selectedOption || { NomeEmpresa: "", UrlLogo: null}
+
     console.log("USER BALANCE", userBalance)
     return (
         <Row>
@@ -188,20 +190,23 @@ class Comprar extends React.Component {
               stockOptions={visibleStockOptions} />
           </Col>
 
-          <Col s={4}>
-              <Row>
+              <Col s={4}>
                 <Col s={12}>
-                  <Chart />
+                    <h3>{ NomeEmpresa }</h3>
                 </Col>
-                <Col s={12}>
-                  <Details {...selectedOption} />
-                </Col>
-              </Row>
-            </Col>
+                <Row>
+                  <Col s={12}>
+                    <Chart />
+                  </Col>
+                  <Col s={12}>
+                    <Details {...selectedOption} />
+                  </Col>
+                </Row>
+              </Col>
 
-            <Col s={4}>
-              <News />
-            </Col>
+              <Col s={4}>
+                <News />
+              </Col>
 
         </Row>
     )
