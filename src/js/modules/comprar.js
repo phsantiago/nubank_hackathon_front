@@ -1,4 +1,5 @@
 import Immutable from 'immutable'
+import { fetchUserProfile } from './user'
 var $ = require('jquery')
 
 export const BASE_URL = "http://simuladoracoes.hackathon.com.br"
@@ -24,6 +25,7 @@ export const buyStockOptions =(option, quantidade) => {
       .done(response => {
         console.log("GOT RESPONSE", response)
         dispatch({ type: BUY_STOCK_OPTION_RESULT, payload: response.ReturnObject })
+        dispatch(fetchUserProfile(1))
     })
   }
 }
