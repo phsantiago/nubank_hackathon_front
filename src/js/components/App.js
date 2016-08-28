@@ -12,6 +12,7 @@ export default class App extends Component {
         <Navbar className="pink darken-4">
           <NavItem href="comprar">Comprar</NavItem>
           <NavItem href="vender">Vender</NavItem>
+          <NavItem href="conquistas">Conquistas</NavItem>
         </Navbar>
         {this.props.children}
       </div>
