@@ -40,7 +40,7 @@
   }
   .notifications{
     position: absolute;
-    right: 14px;
+    transform: translateX(-74%);
     top: 64px;
     z-index: 9;
     overflow: visible !important;
