@@ -7,25 +7,27 @@ class LineGraph extends React.Component {
     const { color, dataX } = this.props
 
     return (
-        <div>
-          <h1>Grafic Minha cor eh {color}</h1>
-          <ul>
-            { dataX.map((n) => <li>VALOR: {n} </li>) }
-          </ul>
-        </div>
+      <Card title="Como o preco variou?">
+        <h1>Grafico</h1>
+      </Card>
     )
   }
 }
 
-const BuyActionsItem = ({ corp, value }) => (
-    <tr>
+const NewsBox = ({ newsData, corpName }) => (
+    <Card title={ "Noticias sobre " + corpName }>
+    </Card>
+)
+
+const BuyActionsItem = ({ corp, value, onClick, ...props }) => (
+    <tr onClick={onClick.bind(this, corp)} {...props}>
       <td>{ corp }</td>
       <td>{ value }</td>
     </tr>
 )
 
-const BuyActions = ({ stockOptions }) => (
-    <Card>
+const BuyActions = ({ onItemClick, stockOptions }) => (
+    <Card title="Quais acoes eu posso comprar?">
       <Table bordered={true}>
         <thead>
           <tr>
@@ -35,7 +37,7 @@ const BuyActions = ({ stockOptions }) => (
         </thead>
 
         <tbody>
-          { stockOptions.map(BuyActionsItem) }
+          { stockOptions.map((o) => ({ ...o, onClick: onItemClick })).map(BuyActionsItem) }
         </tbody>
       </Table>
     </Card>
@@ -43,6 +45,10 @@ const BuyActions = ({ stockOptions }) => (
 
 class Comprar extends React.Component {
   render() {
+    //const { fetchOptionsData } = this.props
+    var fetchOptionsData = null
+    if(!fetchOptionsData)
+      fetchOptionsData = function(x){ console.log("CLICKED", x) }
     var array = [1,2,3,4];
     var defaultOptions = [
       { corp: "MacDonald", value: 11.25 },
@@ -55,15 +61,24 @@ class Comprar extends React.Component {
         <Row>
 
           <Col s={3}>
-            <BuyActions stockOptions={defaultOptions} />
+            <BuyActions
+              onItemClick={fetchOptionsData}
+              stockOptions={defaultOptions} />
           </Col>
 
           <Col s={3}>
-            <LineGraph color="AMARELO" dataX={array} />
+            <Row>
+              <Col s={12}>
+                <LineGraph color="AMARELO" dataX={array} />
+              </Col>
+              <Col s={12}>
+                <LineGraph color="AMARELO" dataX={array} />
+              </Col>
+            </Row>
           </Col>
 
           <Col s={3}>
-            <h1>Comprar</h1>
+            <NewsBox corpName="MacDonal" />
           </Col>
 
         </Row>
