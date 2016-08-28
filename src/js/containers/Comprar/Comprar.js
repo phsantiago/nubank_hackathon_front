@@ -10,11 +10,13 @@ import { selectStockOption, buyStockOptions, fetchNoticias, fetchEmpresas } from
 const mapStateToProps = createSelector(
   [
   (state) => state.comprar.get("selectedOption"),
-  (state) => state.comprar.get("visibleStockOptions")],
-  (opt, list) => {
+  (state) => state.comprar.get("visibleStockOptions"),
+  (state) => state.user.get('user').get('SaldoUsuario')],
+  (opt, list, userBalance) => {
     return {
       selectedOption: opt,
-      visibleStockOptions: list
+      visibleStockOptions: list,
+      userBalance
     }
   }
 )

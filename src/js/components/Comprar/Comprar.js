@@ -142,7 +142,7 @@ const BuyActionsItem = (props) => {
     )
 }
 
-const BuyActions = ({ onItemClick, buyStock, stockOptions }) => (
+const BuyActions = ({ onItemClick, buyStock, stockOptions, userBalance }) => (
     <Card title="Quais ações eu posso comprar?">
       <Table bordered={true} className="tbl-emp">
         <thead>
@@ -156,7 +156,7 @@ const BuyActions = ({ onItemClick, buyStock, stockOptions }) => (
         </thead>
 
         <tbody>
-          { stockOptions.map((o) => ({ ...o, buyStock, onItemClick })).map(BuyActionsItem) }
+          { stockOptions.map((o) => ({ ...o, balance: userBalance, buyStock, onItemClick })).map(BuyActionsItem) }
         </tbody>
       </Table>
     </Card>
@@ -173,19 +173,20 @@ class Comprar extends React.Component {
           buyStockOptions,
           fetchNoticias,
           visibleStockOptions,
+          userBalance,
           selectedOption } = this.props
 
     if(visibleStockOptions.length > 0 && !selectedOption) {
       selectStockOption(visibleStockOptions[0])
     }
 
-    console.log("PROPS", this.props)
-
+    console.log("USER BALANCE", userBalance)
     return (
         <Row>
 
           <Col s={4}>
             <BuyActions
+              userBalance={userBalance}
               buyStock={buyStockOptions}
               onItemClick={selectStockOption}
               stockOptions={visibleStockOptions} />
