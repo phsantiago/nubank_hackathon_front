@@ -15,18 +15,20 @@ const mapStateToProps = createSelector(
 const mapActionCreators = {
 }
 
-const NewsListItem = ({ UrlImagemNoticia: img_url, title, Descricao: content, UrlNoticia: source_url }) => (
+const NewsListItem = ({ UrlImagemNoticia: img_url, TituloNoticia, Descricao: content, UrlNoticia: source_url }) => (
+  <a href={source_url} target="_BLANK">  
     <Card
-      header={<CardTitle image={img_url}>{title}</CardTitle>}
+      header={<CardTitle image={img_url}>{TituloNoticia}</CardTitle>}
       className="small">
       { content }
     </Card>
+  </a>  
 )
 
 const News = ({ newsData }) => {
   console.log("NEWS DATA", newsData)
     return (<div>
-      <h1>Noticias</h1>
+      <h3>Notícias</h3>
       { newsData.map(NewsListItem) }
     </div>)
 }

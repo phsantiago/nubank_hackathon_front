@@ -1,15 +1,13 @@
 import React from 'react'
 import { Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
 import News from '../../containers/News'
+import Style from './Comprar.scss'
 
-class LineGraph extends React.Component {
-  render() {
-    return (
-      <Card title="Como o preco variou?">
-      </Card>
-    )
-  }
-}
+const LineGraph = ({ UrlGrafico }) => (
+  <Card title="Como o preço variou?">
+    <img src={UrlGrafico} className="responsive-img" />
+  </Card>
+)
 
 const Details = ({ ValorDeAbertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMeses }) => (
   <Card>
@@ -44,7 +42,7 @@ const BuyActionsItem = (props) => {
     const { NomeEmpresa, UrlLogo, CotacaoRecente, Variacao, onItemClick } = props
     return (
       <tr onClick={() => { onItemClick(props) }} {...props}>
-        <td><img src={UrlLogo} className="circle responsive-img" /></td>
+        <td><img src={UrlLogo} className="logo-xs" /></td>
         <td>{ NomeEmpresa }</td>
         <td>{ CotacaoRecente }</td>
         <td>{ Variacao }</td>
@@ -53,8 +51,8 @@ const BuyActionsItem = (props) => {
 }
 
 const BuyActions = ({ onItemClick, stockOptions }) => (
-    <Card title="Quais acoes eu posso comprar?">
-      <Table bordered={true}>
+    <Card title="Quais ações eu posso comprar?">
+      <Table bordered={true} className="tbl-emp">
         <thead>
           <tr>
             <th></th>
@@ -89,16 +87,16 @@ class Comprar extends React.Component {
     return (
         <Row>
 
-          <Col s={3}>
+          <Col s={4}>
             <BuyActions
               onItemClick={selectStockOption}
               stockOptions={visibleStockOptions} />
           </Col>
 
-          <Col s={3}>
+          <Col s={4}>
             <Row>
               <Col s={12}>
-                <LineGraph {...this.props} />
+                <LineGraph {...selectedOption} />
               </Col>
               <Col s={12}>
                 <Details {...selectedOption} />
@@ -106,7 +104,7 @@ class Comprar extends React.Component {
             </Row>
           </Col>
 
-          <Col s={2}>
+          <Col s={4}>
             <News />
           </Col>
 
