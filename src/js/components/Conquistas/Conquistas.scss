@@ -1,0 +1,14 @@
+.tac{
+	text-align: center;
+}
+.medal{
+	max-width: 140px;
+}
+.medal.disabled{
+	-webkit-filter: grayscale(100%);
+	transition: 350ms linear;
+}
+.medal.disabled:hover{
+	-webkit-filter: grayscale(65%) !important;
+	transition: 350ms linear;
+}
