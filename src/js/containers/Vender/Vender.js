@@ -21,7 +21,7 @@ const mapActionCreators = {
     return setOptionQty(option.EmpresaId, option.QuantidadeEmEstoque - 1, option.QuantidadeASerVendida + 1)
   },
   decrementQty: function(option) {
-    return setOptionQty(option.EmpresaId, optons.QuantidadeEmEstoque + 1, option.QuantidadeASerVendida - 1)
+    return setOptionQty(option.EmpresaId, option.QuantidadeEmEstoque + 1, option.QuantidadeASerVendida - 1)
   }
 }
 
