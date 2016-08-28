@@ -1,6 +1,25 @@
+
 body{
 	background-color: #fce4ec;
 }
 .row{
 	margin-bottom: 0;
+}
+.tbl-vender{
+	tr{
+		padding: 10px;
+	}
+	.row{
+		display: flex;
+	}
+}
+.btn-purple{
+	background: none;
+	border: 1px solid;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	color: #fff;
+	background-color: #c51162;
+	margin: 0 3px;
 }
