@@ -10,7 +10,8 @@ export default class App extends Component {
     return (
       <Row>
         <Navbar>
-          <NavItem>XXX</NavItem>
+          <NavItem href="comprar">Comprar</NavItem>
+          <NavItem href="vender">Vender</NavItem>
         </Navbar>
         {this.props.children}
       </Row>

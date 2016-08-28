@@ -1,7 +1,7 @@
-import './Comprar.scss';
+import './Comprar.scss'
 
-import { connect } from 'react-redux';
-import Comprar from '../components/Comprar/Comprar';
+import { connect } from 'react-redux'
+import Comprar from '../../components/Comprar/Comprar'
 
 function mapStateToProps(state) {
   return {
