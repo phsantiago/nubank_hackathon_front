@@ -11,13 +11,13 @@ class ModalHistory extends React.Component {
 		const {modalData, history} = this.props
 		return (
 			<Modal
-			  header={modalData + " - Histórico de investimento"}
 			  trigger={
 			    <Button waves='light'>
 			    	<i className="large material-icons">info_outline</i>
 			    </Button>
 			  }>
 			  <div>
+			  	<h4>{modalData} - Histórico de investimento</h4>
 			  	{history.map(ListAction)}
 			  </div>
 			</Modal>
