@@ -5,7 +5,7 @@ import Style from './Comprar.scss'
 
 const LineGraph = ({ UrlGrafico }) => (
   <Card title="Como o preço variou?">
-    <img src={UrlGrafico} className="responsive-img" />
+    <img src={UrlGrafico} className="img-graph responsive-img" />
   </Card>
 )
 
