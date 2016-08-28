@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
 import News from '../../containers/News'
+import Style from './Comprar.scss'
 
 class LineGraph extends React.Component {
   render() {
@@ -44,7 +45,7 @@ const BuyActionsItem = (props) => {
     const { NomeEmpresa, UrlLogo, CotacaoRecente, Variacao, onItemClick } = props
     return (
       <tr onClick={() => { onItemClick(props) }} {...props}>
-        <td><img src={UrlLogo} className="circle responsive-img" /></td>
+        <td><img src={UrlLogo} className="logo-xs" /></td>
         <td>{ NomeEmpresa }</td>
         <td>{ CotacaoRecente }</td>
         <td>{ Variacao }</td>
@@ -89,13 +90,13 @@ class Comprar extends React.Component {
     return (
         <Row>
 
-          <Col s={3}>
+          <Col s={4}>
             <BuyActions
               onItemClick={selectStockOption}
               stockOptions={visibleStockOptions} />
           </Col>
 
-          <Col s={3}>
+          <Col s={4}>
             <Row>
               <Col s={12}>
                 <LineGraph {...this.props} />
@@ -106,7 +107,7 @@ class Comprar extends React.Component {
             </Row>
           </Col>
 
-          <Col s={2}>
+          <Col s={4}>
             <News />
           </Col>
 
