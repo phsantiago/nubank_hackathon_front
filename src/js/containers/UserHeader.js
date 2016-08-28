@@ -26,12 +26,19 @@ class UserHeader extends React.Component {
     let { user } = this.props
     let { UrlImagemUsuario, NomeUsuario, SaldoUsuario, DescontoAcumuladoUsuario } = user
     return (
-        <Row>
-          <img className="circle" src={UrlImagemUsuario} />
-          <span>{NomeUsuario}</span>
-
-          Saldo: { SaldoUsuario }
-          Desconto Acumulado: { DescontoAcumuladoUsuario }
+        <Row className="valign-wrapper main-header pink darken-3">
+          <Col s={1}>
+            <img className="circle picture" src={UrlImagemUsuario} />
+          </Col>
+          <Col s={3} className="white-text">
+            <h5>{NomeUsuario}</h5>
+          </Col>
+          <Col s={4} className="tac white-text">
+            <h3>Saldo: { SaldoUsuario }</h3>
+          </Col>
+          <Col s={4} className="tar white-text">
+            Desconto Acumulado: { DescontoAcumuladoUsuario }
+          </Col>
         </Row>
     )
   }

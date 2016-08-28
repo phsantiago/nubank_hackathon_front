@@ -41,7 +41,7 @@ export default class App extends Component {
               </NavItem>
 
               { isNotificationVisible?
-                <Card className="notifications">
+                <Card className="notifications z-depth-4">
                   <div className="pin"></div>
                   <h2>Notificações</h2>
                 </Card> : null }
