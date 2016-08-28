@@ -39,7 +39,7 @@ class UserHeader extends React.Component {
             </div>
             <div className="sep-saldo">
               <h3>{ SaldoUsuario }</h3>
-              <div className="efeitoSaldo sub">123.12</div>
+              <div className="efeitoSaldo sub">-123.12</div>
             </div>
           </Col>
           <Col s={4} className="tar white-text">

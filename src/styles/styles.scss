@@ -72,21 +72,85 @@
     
   }
   .efeitoSaldo{
-    font-size: 43px;
+    font-size: 37px;
     position: absolute;
     right: 0;
-    top: -8px;
+    top: 10px;
   }
 }
-@-webkit-keyframes sub-anim {
-  0%   { opacity: 0; 
-        top: -8px;}
-  100% { opacity: 1; 
-        top: 20px;}
-}
 .sub{
-  -webkit-animation: sub-anim 5s infinite; /* Safari 4+ */
-  -moz-animation:    sub-anim 5s infinite; /* Fx 5+ */
-  -o-animation:      sub-anim 5s infinite; /* Opera 12+ */
-  animation:         sub-anim 5s infinite; /* IE 10+, Fx 29+ */
+  color: #ff1100;
+  animation: animationFrames infinite 2s;
+  transform-origin: 50% 50%;
+  -webkit-animation: animationFrames infinite 2s;
+  -webkit-transform-origin: 50% 50%;
+  -moz-animation: animationFrames infinite 2s;
+  -moz-transform-origin: 50% 50%;
+  -o-animation: animationFrames infinite 2s;
+  -o-transform-origin: 50% 50%;
+  -ms-animation: animationFrames infinite 2s;
+  -ms-transform-origin: 50% 50%;
+}
+.add{
+  color: #00ff16;
+  animation: animationFrames infinite 2s;
+  transform-origin: 50% 50%;
+  -webkit-animation: animationFrames infinite 2s;
+  -webkit-animation-direction: reverse;
+  -webkit-transform-origin: 50% 50%;
+  -moz-animation: animationFrames infinite 2s;
+  -moz-animation-direction: reverse;
+  -moz-transform-origin: 50% 50%;
+  -o-animation: animationFrames infinite 2s;
+  -o-animation-direction: reverse;
+  -o-transform-origin: 50% 50%;
+  -ms-animation: animationFrames infinite 2s;
+  -ms-animation-direction: reverse;
+  -ms-transform-origin: 50% 50%;
+  animation-direction: reverse;
+}
+
+@keyframes animationFrames{
+  0% {
+    transform:  translate(2px,1px)  ;
+  }
+  100% {
+    transform:  translate(1px,108px)  ;
+  }
+}
+
+@-moz-keyframes animationFrames{
+  0% {
+    -moz-transform:  translate(2px,1px)  ;
+  }
+  100% {
+    -moz-transform:  translate(1px,108px)  ;
+  }
+}
+
+@-webkit-keyframes animationFrames {
+  0% {
+    -webkit-transform:  translate(2px,1px)  ;
+  }
+  100% {
+    -webkit-transform:  translate(1px,108px)  ;
+  }
+}
+
+@-o-keyframes animationFrames {
+  0% {
+    -o-transform:  translate(2px,1px)  ;
+  }
+  100% {
+    -o-transform:  translate(1px,108px)  ;
+  }
+}
+
+@-ms-keyframes animationFrames {
+  0% {
+    -ms-transform:  translate(2px,1px)  ;
+  }
+  100% {
+    -ms-transform:  translate(1px,108px)  ;
+  }
 }
