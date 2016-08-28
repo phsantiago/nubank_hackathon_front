@@ -1,16 +1,11 @@
 import React from 'react'
 import { Modal, Button, Row, Col, Table, CardTitle, Card, Collection, CollectionItem } from 'react-materialize'
 import News from '../../containers/News'
+import Chart from '../../containers/Chart'
 import Style from './Comprar.scss'
 
-const LineGraph = ({ UrlGrafico }) => (
-  <Card title="Como o preço variou?">
-    <img src={UrlGrafico} className="img-graph responsive-img" />
-  </Card>
-)
-
 const Details = ({ ValorDeAbertura, MaiorValorDia, MenorValorDia, MaiorMeses, MenorMeses }) => (
- 
+
   <Card>
     <Table stripped={true} striped={true} bordered={true} hoverable={true}>
       <tbody>
@@ -196,7 +191,7 @@ class Comprar extends React.Component {
           <Col s={4}>
               <Row>
                 <Col s={12}>
-                  <LineGraph {...selectedOption} />
+                  <Chart />
                 </Col>
                 <Col s={12}>
                   <Details {...selectedOption} />
