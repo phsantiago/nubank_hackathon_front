@@ -9,7 +9,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Navbar>
+        <Navbar className="pink darken-4">
           <NavItem href="comprar">Comprar</NavItem>
           <NavItem href="vender">Vender</NavItem>
         </Navbar>

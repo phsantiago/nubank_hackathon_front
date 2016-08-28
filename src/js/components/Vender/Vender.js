@@ -15,7 +15,7 @@ const ListItem = ({img, name, qt, val}) => (
 				{qt + "x" + val}
 			</Col>
 			<Col s={2}>
-				<Button waves='light'>
+				<Button className="pink accent-4" waves='light'>
 					Vender
 				</Button>
 			</Col>
@@ -37,8 +37,8 @@ class ActionList extends React.Component {
 class Vender extends React.Component {
   render() {
   	var array = [
-  		{img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Mcdonalds-90s-logo.svg/2000px-Mcdonalds-90s-logo.svg.png", name:"McDonald's", qt:"2", val:"123R$"},
-  		{img:"https://diariodopresal.files.wordpress.com/2010/09/petrobras-br.jpg", name:"Petrobras", qt:"4", val:"100R$"},
+  		{img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Mcdonalds-90s-logo.svg/2000px-Mcdonalds-90s-logo.svg.png", name:"McDonald's", qt:"2", val:"R$123"},
+  		{img:"https://diariodopresal.files.wordpress.com/2010/09/petrobras-br.jpg", name:"Petrobras", qt:"4", val:"R$100"},
   	]
     return (
     	<Row>
