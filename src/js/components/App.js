@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Row, Col, Card, CardTitle, Navbar, NavItem} from 'react-materialize';
+import UserHeader from '../containers/UserHeader'
 
 export default class App extends Component {
   static propTypes = {
@@ -22,6 +23,7 @@ export default class App extends Component {
 
     return (
       <div>
+        <UserHeader />
         <Navbar className="pink darken-4">
           <Row>
             <Col s={11}>

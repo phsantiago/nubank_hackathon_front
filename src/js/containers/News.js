@@ -1,5 +1,3 @@
-import { bindActionCreators } from 'redux'
-
 import { connect } from 'react-redux'
 import { createSelector} from 'reselect'
 import React from 'react'
@@ -16,13 +14,13 @@ const mapActionCreators = {
 }
 
 const NewsListItem = ({ UrlImagemNoticia: img_url, TituloNoticia, Descricao: content, UrlNoticia: source_url }) => (
-  <a href={source_url} target="_BLANK">  
+  <a href={source_url} target="_BLANK">
     <Card
       header={<CardTitle image={img_url}>{TituloNoticia}</CardTitle>}
       className="small">
       { content }
     </Card>
-  </a>  
+  </a>
 )
 
 const News = ({ newsData }) => {
