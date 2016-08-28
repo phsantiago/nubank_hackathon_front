@@ -74,7 +74,7 @@ export const selectStockOption = (option) => {
       payload: option
     })
     dispatch(fetchCotacao(option.IdEmpresa))
-    //dispatch(fetchNoticias(option.IdEmpresa))
+    dispatch(fetchNoticias(option.IdEmpresa))
   }
 }
 
